@@ -11,7 +11,7 @@ import com.example.UserManagment.UserInterface;
 
 public class App {
     public static void main(String[] args) {
-
+        // Personal
         UserInterface user = new UserImplementation();
         List<String> userInput = user.getInputUser(); // methods from the user UserImplementation()
         User users = new User(userInput.get(0), userInput.get(1), userInput.get(2));
