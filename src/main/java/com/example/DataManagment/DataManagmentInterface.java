@@ -1,5 +1,9 @@
 package com.example.DataManagment;
 
-public interface DataManagmentInterface {
+import java.util.List;
 
+import com.example.UserManagment.User;
+
+public interface DataManagmentInterface {
+    List<User> AddNotes(User user);
 }

@@ -4,6 +4,4 @@ import java.util.List;
 
 public interface UserInterface {
     List<String> getInputUser();
-
-    List<User> addNotes(User user);
 }

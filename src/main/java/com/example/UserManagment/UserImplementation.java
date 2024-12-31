@@ -54,10 +54,4 @@ public class UserImplementation implements UserInterface {
         }
     }
 
-    @Override
-    public List<User> addNotes(User user) {
-
-        return null;
-    }
-
 }

@@ -15,7 +15,8 @@ public class App {
         UserInterface user = new UserImplementation();
         List<String> userInput = user.getInputUser(); // methods from the user UserImplementation()
         User users = new User(userInput.get(0), userInput.get(1), userInput.get(2));
-        user.addNotes(users);
-        // DataManagmentInterface dataManagment = new DataManagmentImplementation();
+
+        DataManagmentInterface dataManagment = new DataManagmentImplementation();
+        dataManagment.AddNotes(users);
     }
 }
