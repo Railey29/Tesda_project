@@ -1,5 +1,6 @@
 package com.example.UserManagment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.DataManagment.DataManagmentImplementation;
@@ -18,29 +19,64 @@ public class ChoicesOperation {
         this.userInput = userInput;
     }
 
+    private User createUserWithDateInput() {
+        List<String> userInputDate = userImplemtation.getInputUserDate();
+        return new User(userInputDate.get(0));
+    }
+
+    private User createWithAllData() {
+        List<String> userInputAll = userImplemtation.getInputUserAll();
+        return new User(userInputAll.get(0), userInputAll.get(1), userInputAll.get(2));
+    }
+
+    private void insert() {
+        System.out.println("----------------------------------------------------------------");
+        User user = createWithAllData();
+        dataManagment.addNotes(user);
+    }
+
+    private void delete() {
+        System.out.println("----------------------------------------------------------------");
+        User user = createUserWithDateInput();
+        dataManagment.deleteNotes(user);
+    }
+
+    private void view() {
+        System.out.println("----------------------------------------------------------------");
+        User user = createUserWithDateInput();
+        dataManagment.viewNotes(user);
+    }
+
+    private void getAllNotes() {
+        System.out.println("----------------------------------------------------------------");
+        System.out.println("--- LIST OF ALL NOTES ----");
+        System.out.println("----------------------------------------------------------------");
+
+        List<User> usersNotes = dataManagment.getNotesList(null);
+
+        for (User user : usersNotes) {
+            System.out.println("DATE: " + user.getDateOfNotes());
+            System.out.println("TITLE: " + user.getTitleNotes());
+            System.out.println("NOTES: " + user.getTakeNotes());
+            System.out.println("----------");
+        }
+    }
+
     public void executeChoice() {
         switch (userInput) {
             case 1:
-                List<String> userInputAll = userImplemtation.getInputUserAll();
-                User user = new User(userInputAll.get(0), userInputAll.get(1), userInputAll.get(2));
-                dataManagment.AddNotes(user);
+                insert();
                 break;
 
             case 2:
-                List<String> userInputDate = userImplemtation.getInputUserDate();
-                User user2 = new User(userInputDate.get(0));
-                dataManagment.DeleteNotes(user2);
+                delete();
                 break;
 
             case 3:
-                List<String> userInputDate2 = userImplemtation.getInputUserDate();
-                User user3 = new User(userInputDate2.get(0));
-                dataManagment.ViewNotes(user3);
+                view();
                 break;
             case 4:
-                List<String> userInputAll2 = userImplemtation.getInputUserAll();
-                User user4 = new User(userInputAll2.get(0), userInputAll2.get(1), userInputAll2.get(2));
-                dataManagment.AddNotes(user4);
+                getAllNotes();
                 break;
         }
     }

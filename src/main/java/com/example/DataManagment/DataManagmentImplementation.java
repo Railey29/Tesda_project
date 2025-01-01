@@ -38,7 +38,7 @@ public class DataManagmentImplementation implements DataManagmentInterface {
     }
 
     @Override
-    public void AddNotes(User user) {
+    public void addNotes(User user) {
         String query = "INSERT INTO notes_method (add_notes , set_date , title_notes) VALUES (? , ? , ?)";
 
         boolean flag = CheckerDate(user.getDateOfNotes());
@@ -55,9 +55,9 @@ public class DataManagmentImplementation implements DataManagmentInterface {
 
             int rowsInterseted = preparedStatement.executeUpdate();
             if (rowsInterseted > 0) {
-                System.out.println("Inserted Successfully");
+                System.out.println("---- INSERTED SUCCESSFULLY ----");
             } else {
-                System.out.println("Insert Failed");
+                System.out.println("---- INSERTED FAILED ----");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,7 +65,7 @@ public class DataManagmentImplementation implements DataManagmentInterface {
     }
 
     @Override
-    public void DeleteNotes(User user) {
+    public void deleteNotes(User user) {
         String query = "DELETE FROM notes_method WHERE set_date = ?";
 
         boolean flag = CheckerDate(user.getDateOfNotes());
@@ -80,9 +80,9 @@ public class DataManagmentImplementation implements DataManagmentInterface {
 
             int rowsInterseted = preparedStatement.executeUpdate();
             if (rowsInterseted > 0) {
-                System.out.println("Delete Successfully");
+                System.out.println("---- DELETED SUCCESSFULLY ----");
             } else {
-                System.out.println("Deleting Failed");
+                System.out.println("---- DELETED FAILED ----");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,16 +90,21 @@ public class DataManagmentImplementation implements DataManagmentInterface {
     }
 
     @Override
-    public void ViewNotes(User user) {
+    public void viewNotes(User user) {
         String query = "SELECT set_date , title_notes , add_notes FROM notes_method WHERE set_date = ?";
         try (Connection connection = getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);) {
             preparedStatement.setString(1, user.getDateOfNotes());
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                System.out.println(resultSet.getString("set_date"));
-                System.out.println(resultSet.getString("title_notes"));
-                System.out.println(resultSet.getString("add_notes"));
+                System.out.println("---- VIEW RESULT ----");
+                String date = resultSet.getNString("set_date");
+                String title = resultSet.getNString("title_notes");
+                String notes = resultSet.getNString("add_notes");
+
+                System.out.println("Date: " + date);
+                System.out.println("Title: " + title);
+                System.out.println("Notes: " + notes);
                 break;
             }
         } catch (Exception e) {
