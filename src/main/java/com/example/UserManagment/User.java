@@ -13,4 +13,11 @@ public class User {
     private String DateOfNotes;
     private String titleNotes;
     private String takeNotes;
+
+    public User(String DateOfNotes) {
+        this.DateOfNotes = DateOfNotes;
+        this.titleNotes = "";
+        this.takeNotes = "";
+    }
+
 }

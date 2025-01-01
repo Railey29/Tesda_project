@@ -5,5 +5,11 @@ import java.util.List;
 import com.example.UserManagment.User;
 
 public interface DataManagmentInterface {
-    List<User> AddNotes(User user);
+    void AddNotes(User user);
+
+    void DeleteNotes(User user);
+
+    void ViewNotes(User user);
+
+    List<User> getNotesList(User user);
 }

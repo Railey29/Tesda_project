@@ -7,10 +7,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class UserImplementation implements UserInterface {
+    private final Scanner input = new Scanner(System.in);
+    private final List<String> userInput = new ArrayList<>();
 
     @Override
-    public List<String> getInputUser() {
-        Scanner input = new Scanner(System.in);
+    public List<String> getInputUserAll() {
         String date = "";
         String title = "";
         String content = "";
@@ -34,12 +35,32 @@ public class UserImplementation implements UserInterface {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        input.close();
 
-        List<String> userInput = new ArrayList<>();
         userInput.add(date);
         userInput.add(title);
         userInput.add(content);
+
+        return userInput;
+    }
+
+    @Override
+    public List<String> getInputUserDate() {
+        String date = "";
+        try {
+            while (true) {
+                System.out.print("Enter Date of Notes (YYYY-MM-DD): ");
+                date = input.nextLine();
+                if (isValidDate(date)) {
+                    break;
+                } else {
+                    System.out.println("Invalid date. Please enter a valid date in YYYY-MM-DD format.");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        userInput.add(date);
 
         return userInput;
     }
