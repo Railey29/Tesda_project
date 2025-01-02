@@ -16,12 +16,15 @@ public class DisplayChoices {
             System.out.println("4.getNotesList");
             System.out.print("Enter (1-4): ");
             choice = input.nextInt();
-
+            ChoicesOperation choicesOperation = new ChoicesOperation(choice);
+            choicesOperation.executeChoice();
             System.out.print("Do you want to try again?(Y/YES): ");
             String tryAgain = input.next();
             clearConsole();
             if (tryAgain.equals("Y") || tryAgain.equals("YES")) {
                 flag = true;
+            } else {
+                break;
             }
         }
 
