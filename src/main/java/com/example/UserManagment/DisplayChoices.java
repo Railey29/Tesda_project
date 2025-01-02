@@ -18,6 +18,7 @@ public class DisplayChoices {
             choice = input.nextInt();
             ChoicesOperation choicesOperation = new ChoicesOperation(choice);
             choicesOperation.executeChoice();
+            System.out.println("================================================");
             System.out.print("Do you want to try again?(Y/YES): ");
             String tryAgain = input.next().toUpperCase();
             input.nextLine();
