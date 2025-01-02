@@ -19,12 +19,13 @@ public class DisplayChoices {
             ChoicesOperation choicesOperation = new ChoicesOperation(choice);
             choicesOperation.executeChoice();
             System.out.print("Do you want to try again?(Y/YES): ");
-            String tryAgain = input.next();
+            String tryAgain = input.next().toUpperCase();
+            input.nextLine();
             clearConsole();
             if (tryAgain.equals("Y") || tryAgain.equals("YES")) {
-                flag = true;
+                flag = false;
             } else {
-                break;
+                flag = true;
             }
         }
 
